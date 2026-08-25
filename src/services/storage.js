@@ -1,3 +1,5 @@
+export const getCartKey = (userId) => `cart_${userId}`;
+
 const storage = {
     get(key) {
         const data = localStorage.getItem(key);
