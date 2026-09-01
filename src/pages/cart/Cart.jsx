@@ -1,10 +1,22 @@
+import CartDeails from "./CartDeails";
+import EmptyCart from "./EmptyCart";
+import { useCart } from "../../context/CartContext";
+
 
 function Cart() {
-    return (
-        <div>
 
-        </div>
+    const {cart, addToCart} = useCart();
+
+    return (
+        <>
+            {cart.length === 0 ? <EmptyCart />
+            :<CartDeails
+                cart={cart}
+                addToCart={addToCart}
+            />}
+        </>
+
     )
 }
 
-export default Cart
+export default Cart;
