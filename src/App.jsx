@@ -1,5 +1,5 @@
 import { Route, Routes, Link } from "react-router-dom";
-import { AuthProvider, CartProvider, useAuth, useCart } from './context/AppContext';
+import { AuthProvider} from './context/AppContext';
 import Home from "./pages/home/Home";
 import Cart from "./pages/cart/Cart";
 import Orders from "./pages/orders/Orders";
@@ -10,6 +10,7 @@ import Register from "./pages/register/Register";
 import Header from "./components/header/Header";
 import Footer from "./components/footer/Footer";
 import './App.css'
+import CartProvider from "./context/CartContext";
 
 function App() {
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Button } from "../../components/ui/button";
-import { useCart } from "../../context/AppContext";
+import { useCart } from '../../context/CartContext';
 import { ShoppingCart, ChevronLeft, Star, ShieldCheck, Truck, RotateCcw } from 'lucide-react';
 import { Badge } from "../../components/ui/badge";
 import { useEffect, useState } from 'react';
@@ -108,7 +108,13 @@ const ProductDetails = () => {
             <Button 
               size="lg" 
               className="flex-grow h-16 rounded-2xl text-lg font-bold gap-3 shadow-xl hover:scale-[1.02] transition-all"
-              onClick={() => addToCart(product)}
+               onClick={() => addToCart({
+                  id: product.id,
+                  name: product.name,
+                  priceCents: product.price,   
+                  image: product.image,
+                  category: product.category
+                })}
             >
               <ShoppingCart className="h-6 w-6" /> Add to Cart
             </Button>

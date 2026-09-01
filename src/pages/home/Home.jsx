@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from "../../components/ui/button";
 import { Card, CardContent, CardFooter } from "../../components/ui/card";
-import { useCart } from '../../context/AppContext';
+import { useCart } from '../../context/CartContext';
 import { ChevronLeft, ChevronRight, Star, ShoppingCart } from 'lucide-react';
 import { Badge } from "../../components/ui/badge";
 import { Link, useNavigate } from 'react-router-dom';

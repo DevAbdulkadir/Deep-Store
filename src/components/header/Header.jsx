@@ -1,14 +1,12 @@
 import { Input } from "../ui/input";
 import { Badge } from "../ui/badge";
 import { Button } from "../ui/button";
+import { useCart } from '../../context/CartContext';
 import { Search, ShoppingCart, Package, LogOut, User } from "lucide-react";
 import { useAuth } from "../../context/AppContext";
 const Header = ({Link}) => {
   const { user, logout } = useAuth();  
-  //const { cart } = useCart();
-  const cart = {"items": [{"item":"headset","quantity":3},
-  {"item":"headset","quantity":3}
-  ]};
+  const { cart } = useCart();
   console.log(user)
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60" id="header">
