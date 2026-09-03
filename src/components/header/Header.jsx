@@ -3,7 +3,7 @@ import { Badge } from "../ui/badge";
 import { Button } from "../ui/button";
 import { useCart } from '../../context/CartContext';
 import { Search, ShoppingCart, Package, LogOut, User } from "lucide-react";
-import { useAuth } from "../../context/AppContext";
+import { useAuth } from "../../context/AuthContext";
 const Header = ({Link}) => {
   const { user, logout } = useAuth();  
   const { cart } = useCart();
