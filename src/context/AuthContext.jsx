@@ -22,7 +22,7 @@ export function AuthProvider({ children }) {
       const users = JSON.parse(localStorage.getItem('app_users') || '[]');
       const matchedUser = users.find((u) => u.cryptoId === activeId);
       if (matchedUser) {
-        setUser({ fullName: matchedUser.fullName, email: matchedUser.email, cryptoId: matchedUser.cryptoId });
+        setUser({ name: matchedUser.name, email: matchedUser.email, cryptoId: matchedUser.cryptoId });
       } else {
         localStorage.removeItem('active_session_id');
       }
@@ -37,7 +37,7 @@ export function AuthProvider({ children }) {
     return users.some((u) => u.email.toLowerCase() === cleanEmail);
   };
 
-  const register = async (fullName, email, password) => {
+  const register = async (name, email, password) => {
     const cleanEmail = email.trim();
     if (isEmailTaken(cleanEmail)) throw new Error('Email already registered');
     if (password.length < 8) throw new Error('Password must be at least 8 characters long');
@@ -45,7 +45,7 @@ export function AuthProvider({ children }) {
     const passwordHash = await hashPassword(password);
     const newUser = {
       cryptoId: crypto.randomUUID(),
-      fullName: fullName.trim(),
+      name: name.trim(),
       email: cleanEmail,
       passwordHash,
     };
@@ -70,7 +70,7 @@ export function AuthProvider({ children }) {
     if (!matchedUser) throw new Error('Invalid email or password.');
 
     localStorage.setItem('active_session_id', matchedUser.cryptoId);
-    const userState = { fullName: matchedUser.fullName, email: matchedUser.email, cryptoId: matchedUser.cryptoId };
+    const userState = { name: matchedUser.name, email: matchedUser.email, cryptoId: matchedUser.cryptoId };
     setUser(userState);
     return userState;
   };
