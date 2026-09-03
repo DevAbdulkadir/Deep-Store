@@ -71,6 +71,18 @@ export default function CartProvider({ children }) {
         );
     };
 
+    const clearCart = () => {
+        setCart([]);
+
+        if (currentUser) {
+            storage.remove(`cart_${currentUser.id}`);
+        }
+    };
+
+    // const clearCart = () => {
+    //     storage.clear();
+    // }
+
     const cartItemCount = cart.reduce(
         (total, item) => total + item.quantity,
         0
@@ -93,6 +105,7 @@ export default function CartProvider({ children }) {
                 addToCart,
                 removeFromCart,
                 updateQuantity,
+                clearCart,
                 cartItemCount,
                 subtotal,
                 shipping,
