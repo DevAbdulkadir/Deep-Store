@@ -14,7 +14,6 @@ const AuthContext = createContext(null);
 export function AuthProvider({ children }) {
   const [currentUser, setUser] = useState();
   const [loading, setLoading] = useState(true);
-  console.log("AuthProvider: currentUser", currentUser);
 
   // Restore session on page refresh
   useEffect(() => {
@@ -28,7 +27,6 @@ export function AuthProvider({ children }) {
         localStorage.removeItem('active_session_id');
       }
     }
-    console.log(`Active session check: ${localStorage.getItem('active_session_id')}`);
 
     setLoading(false);
   }, []);

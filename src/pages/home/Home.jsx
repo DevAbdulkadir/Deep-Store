@@ -16,16 +16,6 @@ const categories = [
   { name: 'Bags', icon: '👜' },
   { name: 'Glasses', icon: '🕶️' }
 ];
-/*
-const [slideimages, setSlideImages] = useState([])
-useEffect(() => {
-      fetch("/products.json")
-        .then(res => res.json())
-        .then(data => setSlideImages(data))
-        .catch(err => console.error("Error loading products:", err));
-    }, []);
-//const slideimages = products.find(p => p.id === productId);
-*/
 const HeroCarousel = () => {
   const [current, setCurrent] = useState(0);
   const slides = [

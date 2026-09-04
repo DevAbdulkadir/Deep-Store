@@ -10,7 +10,6 @@ export default function CartProvider({ children }) {
     const auth = useAuth();
     const currentUser = auth?.currentUser;
 
-    console.log("Current User in CartProvider:", currentUser);
 
     // Cart
     const [cart, setCart] = useState(() => {
