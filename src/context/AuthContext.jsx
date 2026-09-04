@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState, useEffect, act } from 'react';
 
 async function hashPassword(password) {
   const encoder = new TextEncoder();
@@ -12,12 +12,13 @@ async function hashPassword(password) {
 const AuthContext = createContext(null);
 
 export function AuthProvider({ children }) {
-  const [user, setUser] = useState(null);
+  const [currentUser, setUser] = useState();
   const [loading, setLoading] = useState(true);
+  console.log("AuthProvider: currentUser", currentUser);
 
   // Restore session on page refresh
   useEffect(() => {
-    const activeId = localStorage.getItem('active_session_id');
+    const activeId = localStorage.getItem('active_session_id') || [];
     if (activeId) {
       const users = JSON.parse(localStorage.getItem('app_users') || '[]');
       const matchedUser = users.find((u) => u.cryptoId === activeId);
@@ -27,6 +28,8 @@ export function AuthProvider({ children }) {
         localStorage.removeItem('active_session_id');
       }
     }
+    console.log(`Active session check: ${localStorage.getItem('active_session_id')}`);
+
     setLoading(false);
   }, []);
 
@@ -81,7 +84,7 @@ export function AuthProvider({ children }) {
   };
 
   return (
-    <AuthContext.Provider value={{ user, loading, register, login, logout, isEmailTaken }}>
+    <AuthContext.Provider value={{ currentUser, loading, register, login, logout, isEmailTaken }}>
       {!loading && children}
     </AuthContext.Provider>
   );

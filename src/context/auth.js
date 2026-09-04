@@ -1,5 +1,5 @@
 export const mockCurrentUser = {
-  id: 123,
-  name: "Abdulkadir",
-  email: "example@gmail.com",
+  // cryptoId: 2146,
+  // name: "Abdulkadir",
+  // email: "example@gmail.com",
 };

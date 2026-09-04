@@ -1,13 +1,15 @@
 import { Input } from "../ui/input";
+import { useNavigate } from "react-router-dom";
 import { Badge } from "../ui/badge";
 import { Button } from "../ui/button";
 import { useCart } from '../../context/CartContext';
 import { Search, ShoppingCart, Package, LogOut, User } from "lucide-react";
 import { useAuth } from "../../context/AuthContext";
 const Header = ({Link}) => {
-  const { user, logout } = useAuth();  
+  const { currentUser, logout } = useAuth();  
   const { cart } = useCart();
-  console.log(user)
+  const navigate = useNavigate();
+  console.log("from Header", currentUser);
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60" id="header">
       <div className="container flex h-16 items-center justify-between px-4 md:px-8">
@@ -33,11 +35,11 @@ const Header = ({Link}) => {
             <Package className="h-6 w-6" />
             <span className="hidden sm:inline text-sm font-medium">Orders</span>
           </Link>
-          {user ? (
+          {currentUser ? (
             <div className="flex items-center gap-4 ml-2">
               <div className="flex flex-col items-end">
                 <span className="text-xs text-muted-foreground">Welcome,</span>
-                <span className="text-sm font-semibold">{user.name}</span>
+                <span className="text-sm font-semibold">{currentUser.name}</span>
               </div>
               <Button variant="ghost" size="icon" onClick={() => { logout(); navigate('/'); }}>
                 <LogOut className="h-5 w-5" />

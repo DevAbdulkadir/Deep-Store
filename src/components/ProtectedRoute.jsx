@@ -3,10 +3,10 @@ import { Navigate, Outlet } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext.jsx';
 
 export default function ProtectedRoute() {
-  const { user } = useAuth();
+  const { currentUser } = useAuth();
 
   // If the user isn't logged in, redirect them to /login
-  if (!user) {
+  if (!currentUser) {
     return <Navigate to="/login" replace />;
   }
 

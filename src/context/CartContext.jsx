@@ -1,27 +1,39 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import storage from "../services/storage";
 import { mockCurrentUser } from "./auth";
+import { useAuth } from "./AuthContext";
 
 const CartContext = createContext();
 
 export default function CartProvider({ children }) {
+    //const currentUser = mockCurrentUser;
+    const auth = useAuth();
+    const currentUser = auth?.currentUser;
 
-    const currentUser = mockCurrentUser;
+    console.log("Current User in CartProvider:", currentUser);
 
     // Cart
     const [cart, setCart] = useState(() => {
         if (!currentUser) return [];
 
-        return storage.get(`cart_${currentUser.id}`) || [];
+        return storage.get(`cart_${currentUser.cryptoId}`) || [];
     });
 
-    // Persistence
+    // Reset or load cart when user changes
+    useEffect(() => {
+        if (!currentUser) {
+        setCart([]); // clear cart for guests
+        return;
+        }
+        const savedCart = storage.get(`cart_${currentUser.cryptoId}`) || [];
+        setCart(savedCart);
+    }, [currentUser]);
+
+    // Persist cart for logged-in user
     useEffect(() => {
         if (!currentUser) return;
-
-        storage.set(`cart_${currentUser.id}`, cart);
+        storage.set(`cart_${currentUser.cryptoId}`, cart);
     }, [cart, currentUser]);
-
     const addToCart = (product) => {
 
         setCart((currentCart) => {

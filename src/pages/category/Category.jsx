@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Badge } from "../../components/ui/badge";
 import { Card, CardContent, CardFooter } from "../../components/ui/card";
-import { useCart } from "../../context/AppContext";
+import { useCart } from "../../context/CartContext";
 import { Star, ShoppingCart, ChevronLeft } from 'lucide-react';
 import { Button } from "../../components/ui/button";
 
