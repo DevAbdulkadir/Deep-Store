@@ -29,7 +29,7 @@ const Header = ({Link}) => {
             )}
           </Link>
           
-          <Link to="/order" className="p-2 hover:bg-secondary rounded-full transition-colors flex items-center gap-2">
+          <Link to="/orders" className="p-2 hover:bg-secondary rounded-full transition-colors flex items-center gap-2">
             <Package className="h-6 w-6" />
             <span className="hidden sm:inline text-sm font-medium">Orders</span>
           </Link>

@@ -1,7 +1,6 @@
 import CartDeails from "./CartDeails";
 import EmptyCart from "./EmptyCart";
 import { useCart } from "../../context/CartContext";
-import ProductsGrid from "./ProductsGrid";
 
 
 function Cart() {
@@ -15,7 +14,6 @@ function Cart() {
                 cart={cart}
                 addToCart={addToCart}
             />}
-                <ProductsGrid />
         </>
 
     )
