@@ -1,8 +1,8 @@
-import { mockCurrentUser } from '../../context/auth';
+import { useAuth } from '../../context/AuthContext';
 
 function OrdersHeader() {
 
-    const currentUser = mockCurrentUser;
+    const {currentUser} = useAuth();    
 
     return (
         <div className="flex flex-col justify-center my-8 md:ml-6 items-center gap-4 md:flex-row md:justify-between xl:w-[70%]">

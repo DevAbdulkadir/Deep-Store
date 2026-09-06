@@ -3,14 +3,13 @@ import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useCart } from '../../context/CartContext';
 import { orderService } from '../../services/orderService';
-import { mockCurrentUser } from '../../context/auth';
+import { useAuth } from '../../context/AuthContext';
 
 function OrdersForm({onOrderCreated, completeOrder}) {
 
     const navigate = useNavigate();
 
-    const currentUser = mockCurrentUser;
-    // const { currentUser } = useAuth();
+    const { currentUser } = useAuth();
 
     const {
         cart,
@@ -57,7 +56,7 @@ function OrdersForm({onOrderCreated, completeOrder}) {
 
             // Create order
             const newOrder = orderService.createOrder(
-                currentUser.id,
+                currentUser.cryptoId,
                 {
                     items: orderItems,
 
@@ -95,7 +94,7 @@ function OrdersForm({onOrderCreated, completeOrder}) {
         <div className='xl:w-[40%]'>
             <div className='my-5 ml-6 flex gap-3 items-center'>
                 <MapPin className='text-ring' />
-                <h1 className='font-semibold text-2xl text-foreground'>Shopping Cart</h1>
+                <h1 className='font-semibold text-2xl text-foreground'>Shipping Details</h1>
             </div>
             <form 
                 onSubmit={handleSubmit(handlePlaceOrder)}
@@ -109,6 +108,7 @@ function OrdersForm({onOrderCreated, completeOrder}) {
                             className="appearance-none block w-full text-gray-700 border border-gray-200 rounded py-2 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="first-name" 
                             type="text" 
                             placeholder="First Name"
+                            required
                             {...register("fullName", {
                                 required: true,
                             })}
@@ -122,6 +122,7 @@ function OrdersForm({onOrderCreated, completeOrder}) {
                             id="last-name" 
                             type="text" 
                             placeholder="Last Name"
+                            required
                             {...register("Last Name", {
                                 required: true,
                             })}
@@ -138,6 +139,7 @@ function OrdersForm({onOrderCreated, completeOrder}) {
                             id="address" 
                             type="text" 
                             placeholder="123 Deep Tech Street"
+                            required
                             {...register("Address", {
                                 required: true,
                             })}
@@ -154,6 +156,7 @@ function OrdersForm({onOrderCreated, completeOrder}) {
                             id="city" 
                             type="text" 
                             placeholder="Lagos"
+                            required
                             {...register("fullName", {
                                 required: true,
                             })}
@@ -167,6 +170,7 @@ function OrdersForm({onOrderCreated, completeOrder}) {
                             id="zip" 
                             type="text" 
                             placeholder="100001"
+                            required
                             {...register("Zip Code", {
                                 required: true,
                             })}
@@ -186,11 +190,12 @@ function OrdersForm({onOrderCreated, completeOrder}) {
 
                 <button className="w-full mt-4 bg-ring text-white font-bold py-4 rounded-xl focus:outline-none focus:shadow-outline"
                         type="submit"
-                        disabled={!isValid || cart.length === 0}
+                        disabled={cart.length === 0}
                 >
                     Confirm Order(${total})
                 </button>
             </form>
+            { !currentUser && <p className='text-center text-destructive font-semibold'>Please login first to place an order.</p>}
             { cart.length === 0 && <p className='text-center text-muted-foreground font-semibold'>Add items to cart to checkout</p>}
 
 

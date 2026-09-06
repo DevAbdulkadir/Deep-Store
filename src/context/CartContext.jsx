@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import storage from "../services/storage";
-import { mockCurrentUser } from "./auth";
+// import { mockCurrentUser } from "./auth";
 import { useAuth } from "./AuthContext";
 
 const CartContext = createContext();

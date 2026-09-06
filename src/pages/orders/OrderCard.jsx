@@ -23,7 +23,7 @@ function OrderCard({order}) {
                         {formattedDate}
                         <h4 className="text-black">{order.itemCount}</h4>
                     </p>
-                <span className="font-extrabold">${order.total}</span>
+                <span className="font-bold text-xl">${order.total}</span>
             </div>
         </div>
     )

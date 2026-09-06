@@ -3,14 +3,16 @@ import { orderService } from "../../services/orderService";
 import OrderHistory from "./OrderHistory"
 import OrdersForm from "./OrdersForm"
 import OrdersHeader from "./OrdersHeader"
-import { mockCurrentUser } from "../../context/auth";
 import CompleteOder from "./CompleteOder";
+import { useAuth } from "../../context/AuthContext";
 
 function Orders() {
 
+    const { currentUser } = useAuth();    
+
     const [completeOrder, setCompleteOrder] = useState(false);
 
-    const currentUser = mockCurrentUser
+    // const currentUser = mockCurrentUser
 
     const [orders, setOrders] = useState([]);
 
@@ -21,7 +23,7 @@ function Orders() {
         }
 
         const savedOrders = orderService.getOrders(
-            currentUser.id
+            currentUser.cryptoId
         );
 
         setOrders(savedOrders);
