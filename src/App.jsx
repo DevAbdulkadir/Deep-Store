@@ -26,9 +26,9 @@ function App() {
               <Route path="/" element={<Home />} />
 
               {/* Protected Routes (Require Login) */}
-                <Route element={<ProtectedRoute />}>
+                {/* <Route element={<ProtectedRoute />}> */}
                     <Route path="/cart" element={<Cart />} />
-                </Route>
+                {/* </Route> */}
 
               <Route path="/orders" element={<Orders />} />
 
